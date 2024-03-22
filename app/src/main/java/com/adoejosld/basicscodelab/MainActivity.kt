@@ -48,7 +48,7 @@ fun MyApp(
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Surface(
         color = MaterialTheme.colorScheme.primary,
-        modifier = modifier.padding(vertical = 4.dp, horizontal = 4.dp)
+        modifier = modifier.padding(vertical = 2.dp, horizontal = 4.dp)
     ) {
         Row(modifier = Modifier.padding(12.dp)) {
             Column(
