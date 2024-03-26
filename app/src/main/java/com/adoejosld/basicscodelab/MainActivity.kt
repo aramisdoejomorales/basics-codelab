@@ -12,6 +12,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -46,13 +48,19 @@ fun MyApp(
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
+
+    val expanded = remember { mutableStateOf(false) }
+    val extraPadding = if (expanded.value) 48.dp else 0.dp
+
     Surface(
         color = MaterialTheme.colorScheme.primary,
         modifier = modifier.padding(vertical = 2.dp, horizontal = 4.dp)
     ) {
         Row(modifier = Modifier.padding(12.dp)) {
             Column(
-                modifier = modifier.weight(1f)
+                modifier = modifier
+                    .weight(1f)
+                    .padding(bottom = extraPadding)
             ) {
                 Text(
                     text = "Hello...", color = Color.Black
@@ -61,8 +69,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                     text = "$name!", color = Color.Red
                 )
             }
-            ElevatedButton(onClick = { }) {
-                Text(text = "Mostra +")
+            ElevatedButton(onClick = { expanded.value = !expanded.value }) {
+                Text(if (expanded.value) "Mostrar -" else "Mostrar +")
             }
         }
     }
