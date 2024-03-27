@@ -31,17 +31,15 @@ class MainActivity : ComponentActivity() {
         setContent {
             BasicsCodelabTheme {
                 // A surface container using the 'background' color from the theme
-                MyApp(modifier = Modifier.fillMaxSize())
+                MyApp()
             }
         }
     }
 }
 
 @Composable
-fun MyApp(modifier: Modifier = Modifier) {
-
+fun MyApp() {
     var shouldShowOnboarding by remember { mutableStateOf(true) }
-
     if (shouldShowOnboarding) {
         OnboardingScreen(onContinueClicked = { shouldShowOnboarding = false })
     } else {
@@ -72,10 +70,8 @@ private fun Greetings(
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-
     val expanded = remember { mutableStateOf(false) }
     val extraPadding = if (expanded.value) 48.dp else 0.dp
-
     Surface(
         color = MaterialTheme.colorScheme.primary,
         modifier = modifier.padding(vertical = 2.dp, horizontal = 4.dp)
@@ -102,7 +98,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 
 @Composable
 fun OnboardingScreen(onContinueClicked: () -> Unit, modifier: Modifier = Modifier) {
-
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -127,11 +122,11 @@ fun ShouldShowOnboardingPreview() {
     }
 }
 
-@Preview
+@Preview(showBackground = true, widthDp = 320, heightDp = 320)
 @Composable
 fun MyAppPreview() {
     BasicsCodelabTheme {
-        MyApp(modifier = Modifier.fillMaxSize())
+        MyApp()
     }
 }
 
