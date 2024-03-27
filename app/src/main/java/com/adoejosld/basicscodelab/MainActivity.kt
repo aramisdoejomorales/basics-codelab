@@ -38,7 +38,20 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MyApp(
+fun MyApp(modifier: Modifier = Modifier) {
+
+    var shouldShowOnboarding by remember { mutableStateOf(true) }
+
+    if (shouldShowOnboarding) {
+        OnboardingScreen(onContinueClicked = { shouldShowOnboarding = false })
+    } else {
+        Greetings()
+    }
+
+}
+
+@Composable
+private fun Greetings(
     modifier: Modifier = Modifier,
     names: List<String> = listOf(
         "Android",
@@ -88,8 +101,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun OnboardingScreen(modifier: Modifier = Modifier) {
-    var shouldShowOnboarding by remember { mutableStateOf(true) }
+fun OnboardingScreen(onContinueClicked: () -> Unit, modifier: Modifier = Modifier) {
 
     Column(
         modifier = modifier.fillMaxSize(),
@@ -99,24 +111,34 @@ fun OnboardingScreen(modifier: Modifier = Modifier) {
         Text("Bienvenido a Basics Codelab")
         Button(
             modifier = modifier.padding(vertical = 24.dp),
-            onClick = { shouldShowOnboarding = false }) {
+            onClick = onContinueClicked
+        ) {
             Text("Continuar")
         }
     }
 }
 
+// Vistas Previas de las pantallas
 @Preview(showBackground = true, widthDp = 320, heightDp = 320)
 @Composable
 fun ShouldShowOnboardingPreview() {
     BasicsCodelabTheme {
-        OnboardingScreen()
+        OnboardingScreen(onContinueClicked = { })
+    }
+}
+
+@Preview
+@Composable
+fun MyAppPreview() {
+    BasicsCodelabTheme {
+        MyApp(modifier = Modifier.fillMaxSize())
     }
 }
 
 @Preview(showBackground = true, widthDp = 320)
 @Composable
-fun GreetingPreview() {
+fun GreetingsPreview() {
     BasicsCodelabTheme {
-        MyApp()
+        Greetings()
     }
 }
