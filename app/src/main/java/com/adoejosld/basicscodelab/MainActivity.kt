@@ -83,7 +83,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                     text = "Hello...", color = Color.Black
                 )
                 Text(
-                    text = "$name!", color = Color.Red
+                    text = name, color = Color.Red
                 )
             }
             ElevatedButton(onClick = { expanded = !expanded }) {
