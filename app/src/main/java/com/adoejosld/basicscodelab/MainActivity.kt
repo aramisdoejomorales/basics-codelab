@@ -88,11 +88,11 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                     .weight(1f)
                     .padding(bottom = extraPadding.coerceAtLeast(0.dp))
             ) {
-                Text(text = "Hello...")
+                Text(text = "Hello...", color = Color.White)
                 Text(
                     text = name, style = MaterialTheme.typography.headlineMedium.copy(
                         fontWeight = FontWeight.ExtraBold
-                    ), color = Color.Red
+                    ), color = Color.Green
                 )
             }
             ElevatedButton(onClick = { expanded = !expanded }) {
