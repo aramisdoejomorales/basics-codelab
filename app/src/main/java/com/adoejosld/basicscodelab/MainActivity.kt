@@ -31,20 +31,23 @@ class MainActivity : ComponentActivity() {
         setContent {
             BasicsCodelabTheme {
                 // A surface container using the 'background' color from the theme
-                MyApp()
+                MyApp(modifier = Modifier.fillMaxSize())
             }
         }
     }
 }
 
 @Composable
-fun MyApp() {
+fun MyApp(modifier: Modifier = Modifier) {
     var shouldShowOnboarding by remember { mutableStateOf(true) }
-    if (shouldShowOnboarding) {
-        OnboardingScreen(onContinueClicked = { shouldShowOnboarding = false })
-    } else {
-        Greetings()
+    Surface(modifier) {
+        if (shouldShowOnboarding) {
+            OnboardingScreen(onContinueClicked = { shouldShowOnboarding = false })
+        } else {
+            Greetings()
+        }
     }
+
 
 }
 
@@ -126,7 +129,7 @@ fun ShouldShowOnboardingPreview() {
 @Composable
 fun MyAppPreview() {
     BasicsCodelabTheme {
-        MyApp()
+        MyApp(modifier = Modifier.fillMaxSize())
     }
 }
 
